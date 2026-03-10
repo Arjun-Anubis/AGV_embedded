@@ -1,6 +1,6 @@
 # PCB Design with the nPM1100 PMIC
 
-So at first glance, here's what I understand of this task. The company NordicSemiconductors makes an IC which is used for "power management", more specifically from their own site (https://www.nordicsemi.com/Products/nPM1100)
+So at first glance, here's what I understand of this task. The company NordicSemiconductors makes an IC which is used for "power management", more specifically from their own [site](https://www.nordicsemi.com/Products/nPM1100)
 
 > The nPM1100 is a dedicated power management IC (PMIC) with a highly efficient dual-mode configurable buck regulator and integrated battery charger. It is designed as a complementary component to Nordic’s nRF52® Series and nRF53® Series System-on-Chips (SoCs) to ensure reliable power delivery and stable operation, whilst maximizing battery life through high efficiency and low quiescent currents. It can also be used as a generic PMIC device for any other suitable application.
 
