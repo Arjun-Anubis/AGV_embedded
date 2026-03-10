@@ -20,6 +20,8 @@ So there's a bunch of documents I should read apprently, but the trick I suppose
 
 ## Application Schematic
 
+![Application Scheme](./images/app_schematic.png)
+
 Welp, here's what I found. Skip straight to chapter 7, application, which starts with a schematic that does make a lot of things clear. Its an example application of using the nPM1100 to drive a nR5X (2 or 3 ig) so we've got three 4 main elements
 
 1. The nR52X, the thing we're driving. 
