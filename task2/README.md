@@ -7,20 +7,25 @@ There's two main parts to doing this task
 ## CORDIC
 
 Let $u(\theta)$ be the unit vector in the direction of $\theta$, then we have the rotation matrix
+
 $$
 R(\phi) = \begin{bmatrix}
 \cos \phi  & -\sin \phi \\
 \sin \phi & \cos \phi
 \end{bmatrix}
 $$
+
 such that
+
 $$
 u(\theta + \phi) = \mathbf{R}(\phi) u(\theta)
 $$
 Now, suppose that $\theta$ could be written as the sum
+
 $$
 \theta = \sum_{i=0}^{n} \sigma_{i}\gamma_{i} 
 $$
+
 where $\sigma = \pm 1$ and $\gamma$ is a reducing sequence of angles, then we would have
 $$
 u(\theta) = \left( \prod_{i=0}^{n} R(\sigma_{i}\gamma_{i})  \right) u(0)
