@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "NPM1100-QDAB-R7")(type "KiCad")(uri "${KIPRJMOD}/NPM1100-QDAB-R7")(options "")(descr ""))
+)

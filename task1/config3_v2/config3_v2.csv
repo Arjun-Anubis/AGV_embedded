@@ -1,0 +1,11 @@
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"IC1";"QFN50P400X400X90-25N-D";1;"NPM1100-QDAA-R7";;;
+2;"C1";"C_0603_1608Metric";1;"1u";;;
+3;"C2,C4,C5";"C_0603_1608Metric";3;"10u";;;
+4;"C3";"C_0603_1608Metric";1;"2.2u";;;
+5;"R2";"R_0603_1608Metric";1;"10k";;;
+6;"R1";"R_0603_1608Metric";1;"1.5k";;;
+7;"L1";"L_0805_2012Metric";1;"2.2u";;;
+8;"J3";"USB_Micro-B_Amphenol_10118194_Horizontal";1;"USB_B_Micro";;;
+9;"J2";"PinSocket_1x08_P2.54mm_Vertical";1;"MCU Connector";;;
+10;"J1";"JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical";1;"BatteryCon";;;

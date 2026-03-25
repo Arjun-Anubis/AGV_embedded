@@ -73,6 +73,7 @@ In the schematic this is pretty simple, but there's two main things to note here
 #### The PMIC itself: nPM1100
 This ofcourse, deserves its own readme, all to itself, so I'll break down the matter later. But for now, I think I understand well enough what this IC does, we now need to either making a spec, or looking at how to fabricate a PCB
 
+## Reference Circuits
 On the first front, I can basically cheat, chapter 8 gives us a few example PCB circuits, 6 to be specific, 3 different levels of implementing the features and 2 different form factors (WLCSP or QFN), we're concerned with the QFN ones
 
 ![implementation levels](./images/implementation_levels.png)
@@ -80,3 +81,6 @@ On the first front, I can basically cheat, chapter 8 gives us a few example PCB 
 Lets start with the most basic model, this is really very bare bones, it doesn't use the USB in, it doesnt use the V buck, no shipping, optional charging led, no thermal  regulation. 
 
 ![config1](./images/config1.png)
+
+So for now I can focus on just implementing this, excellent, saves the reading for later. How do you implement this schematic on a PCB?
+So for no
