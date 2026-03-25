@@ -42,7 +42,7 @@ The 4mmx4mm package does indeed exist
 
 > nPM1100 is an integrated Power Management IC (PMIC) with a linear-mode lithium-ion/lithium-polymer battery charger in a compact 2.1x2.1 mm WLCSP or 4.0x4.0 mm QFN package. It has a highly efficient DC/ DC buck regulator with configurable dual mode output.
 
-![./images/ordering_informtation.png](Ordering info)
+![ Ordering info ]( ./images/ordering_informtation.png )
 
 and we can indeed order it, according to the datasheet, the exact variant we want is
 
@@ -58,7 +58,7 @@ We can indeed charge at 200mA
 
 and we need to use a 1.5k resistor according to the table
 
-![./images/charging_current.png](charging current)
+![ charging current ]( ./images/charging_current.png )
 
 ### Output voltage
 
@@ -68,5 +68,5 @@ We can indeed output a stable 3.0V using the buck regulator
 
 and we need to set both VOUTBSET pins high accourding to the table
 
-![./images/voltage_selection.png](voltage selection)
+![ voltage selection ]( ./images/voltage_selection.png )
 
