@@ -94,23 +94,37 @@ option 3,
 
 Why? Three reasons
 
-    1. We need atleast 200mA input for it to be able to charge the battery while also powering the device
-    and so I cant use the flat 100mA option
-    2. Flat 500mA is unsafe in the SDP case, in which case I risk bricking a laptop if I charge from that
-    essentially I wouldnt be following the USB spec
-    3. Exposing ISET requires (a) more pins to the MCU, and (b) also exposing the usb data line to the MCU
+a. We need atleast 200mA input for it to be able to charge the battery while also powering the device
+and so I cant use the flat 100mA option
+b. Flat 500mA is unsafe in the SDP case, in which case I risk bricking a laptop if I charge from that
+essentially I wouldnt be following the USB spec
+c. Exposing ISET requires (a) more pins to the MCU, and (b) also exposing the usb data line to the MCU
 both of which, it may not have
 
 2. Which battery parameters?
+We need to set three parameters;
 
-We need to choose 3 things
-
-    (a) Ichg, which has to be 200mA and requires a 1.5k resistor (tolerance be damned :( )
-    (b) Vtermset, which really depends on our battery, but I'll set it low, which is 4.1V cuz we're on standard
-    (c) NTC, here I'll opt to just ignore this, because it seems that batteries with thermistors are rare
-    and it adds an extra pin, and we already need two pins for power and ground.
+a. Ichg, which has to be 200mA and requires a 1.5k resistor (tolerance be damned :( )
+b. Vtermset, which really depends on our battery, but I'll set it low, which is 4.1V cuz we're on standard
+c. NTC, here I'll opt to just ignore this, because it seems that batteries with thermistors are rare
+and it adds an extra pin, and we already need two pins for power and ground.
 
 3. What sort of microcontoller header?
 
-    a. Do we want to expose the SHP pins?
+What do we absolutely need?
+1. Vout
+2. ground
+
+What would be nice to have?
+1. CHG
+2. ERR
+
+What would be _really_ nice to have?
+1. Battery monitor with enable
+2. Low battery indicator
+
+What I'm not exposing?
+1. MODE: why? the default is already automatic
+2. ISET: I dont wanna expose the USB bus
+3. SHPACT: too nihe a faeture to demand its own pin
 
