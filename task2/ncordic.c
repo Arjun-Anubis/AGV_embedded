@@ -1,25 +1,33 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define K8 0x09B7
+#define K8 { 0x09B7, 0 };
 
 typedef struct { int16_t x, y; } Vector;
+uint8_t gamma[8] = { 127, 75, 40, 20, 10, 5, 3, 1 };
+
+Vector Tp( Vector vector, int i ) {
+		Vector out =  { vector.x - (vector.y >> i) , vector.y + (vector.x >> i) };
+		return out;
+}
+Vector Tn( Vector vector, int i ) {
+		Vector out =  { vector.x + (vector.y >> i) , vector.y - (vector.x >> i) };
+		return out;
+}
 
 Vector rotate( uint8_t angle ) {
-	Vector vector = { K8, 0 };
-	int16_t temp;
+	Vector vector = K8;
 	int16_t angle16 = angle;
 
-	uint8_t gamma[8] = { 127, 75, 40, 20, 10, 5, 3, 1 };
-
-	int sign = 0;
 	for ( int i = 0; i < 8; i++ ) {
-		sign = angle16 < 0 ? 1 : -1;
-		angle16 += sign * gamma[i];
-
-		temp = vector.y;
-		vector.y -= sign * (vector.x >> i) ;
-		vector.x += sign * (temp >> i) ;
+		if ( angle16 > 0 ) {
+			angle16 -= gamma[i];
+			vector = Tp( vector, i );
+		}
+		else {
+			angle16 += gamma[i];
+			vector = Tn( vector, i );
+		}
 
 	}
 	return vector;

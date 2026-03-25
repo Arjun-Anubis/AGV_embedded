@@ -6,6 +6,12 @@ There's two main parts to doing this task
 
 ## CORDIC
 
+The goal with cordic is to find the sin and cos of an angle without multiplication
+the trick is to precompute certain values for which we do know the tan inverse and
+finding the closest approximation to the angle using these numbers.
+
+### Mathematical Backing
+
 Let $u(\theta)$ be the unit vector in the direction of $\theta$, then we have the rotation matrix
 
 $$
@@ -62,3 +68,51 @@ $$
 So, to find $u(\theta)$ we need to
 1. find $\sigma_{i}$ for $i = 0\dots n$ such that $\theta = \sum_{i=0}^{n} \sigma_{i}\gamma_{i}$
 2. iteratively apply $T_{i}$ to $K_{n}$
+
+While applying $T$, since we can not multiply by $\sigma$ we define
+
+$$
+\mathbf{T}_{i}^{(+)} = \begin{bmatrix}
+1 & -2^{-i} \\
+2^{-i} & 1
+\end{bmatrix}
+$$
+
+and
+
+$$
+\mathbf{T}_{i}^{(-)} = \begin{bmatrix}
+1 &  2^{-i} \\
+-2^{-i} & 1
+\end{bmatrix}
+$$
+
+### The algorithm
+
+The basic algorithm is implemented in C in [this file](./numerical_cordic.c), this implements 
+8 bit input to 12 bit output CORDIC, which has gainful aaccuracy at
+8 iterations. 
+
+In this case the algorithm is
+
+    input angle
+    constants K8, gamma[0-7]
+
+    output vector
+
+    initialise
+    vector = k8
+    for counter in 0..7:
+        if ( angle > 0 ):
+            angle -= gamma[i]
+            vector = Tp( vector, i )
+        else
+            angle += gamma[i]
+            vector = Tn( vector, i )
+
+    return vector
+
+
+where 
+
+
