@@ -19,22 +19,30 @@ This means that our chip has the following
 2. output (microcontroller)
 3. inout (battery, which has to be charged and discharged)
 
-In this case, our design requirements demand
+and similarly out PMIC can itself be divided into subsystems
 
-1. 3V DC
+![Block diagram](./images/block_diagram.png)
+
+Now that we understand what the chip does on a high level, we need to check if this
+is indeed the right chip for us to use, we can decide this by looking at the 
+design requirements:
+
+1. 3V DC output
 2. 200mA charging
 3. 35mmx35mm for the entire PCB
 
 and we have been told to use the nordic semiconductor nPM1100 PMIC
 with the QFN24 variant, which is 4mmx4mm.
 
-The charging current is to be 200mA, for the battery to be useful,
-the consumption current should be less than that,
-say 50-100mA, the datasheet states about 150,
-so we have about 450mW of power consumption, which is more or less typical for 
-a small electronic device.
+First we make a ballpark estimate, then we consult the data sheet, the voltage ~ 3V
+is pretty typical for a microcontroller so that makes sense, and the charging
+current 200mA is pretty typical for a small LiPo battery, in say a drone.
 
-Now we confirm a few things from the datasheet
+The consumption current is probably less than that, and that would make the 
+outut power a few hundred mW, which is also reasonable for a 35mmx35mm
+chip to discharge
+
+Now we consult the datasheet
 
 ### Package size
 
@@ -42,7 +50,7 @@ The 4mmx4mm package does indeed exist
 
 > nPM1100 is an integrated Power Management IC (PMIC) with a linear-mode lithium-ion/lithium-polymer battery charger in a compact 2.1x2.1 mm WLCSP or 4.0x4.0 mm QFN package. It has a highly efficient DC/ DC buck regulator with configurable dual mode output.
 
-![ Ordering info ]( ./images/ordering_informtation.png )
+![ Ordering info ]( ./images/ordering_information.png )
 
 and we can indeed order it, according to the datasheet, the exact variant we want is
 
@@ -69,4 +77,40 @@ We can indeed output a stable 3.0V using the buck regulator
 and we need to set both VOUTBSET pins high accourding to the table
 
 ![ voltage selection ]( ./images/voltage_selection.png )
+
+
+## Pin Level
+
+Now we have a high level overview of the scale and function of the chip, and we haev determined
+that it can be appropriately used here, let us get into the nitty gritties. We need to make a few 
+design choices
+
+1. Which power input setting?
+
+![Choices for power input](./images/power_choices.png)
+
+According to the datasheet, I can choose from four possible choices, of these I'm going to choose 
+option 3, 
+
+Why? Three reasons
+
+    1. We need atleast 200mA input for it to be able to charge the battery while also powering the device
+    and so I cant use the flat 100mA option
+    2. Flat 500mA is unsafe in the SDP case, in which case I risk bricking a laptop if I charge from that
+    essentially I wouldnt be following the USB spec
+    3. Exposing ISET requires (a) more pins to the MCU, and (b) also exposing the usb data line to the MCU
+both of which, it may not have
+
+2. Which battery parameters?
+
+We need to choose 3 things
+
+    (a) Ichg, which has to be 200mA and requires a 1.5k resistor (tolerance be damned :( )
+    (b) Vtermset, which really depends on our battery, but I'll set it low, which is 4.1V cuz we're on standard
+    (c) NTC, here I'll opt to just ignore this, because it seems that batteries with thermistors are rare
+    and it adds an extra pin, and we already need two pins for power and ground.
+
+3. What sort of microcontoller header?
+
+    a. Do we want to expose the SHP pins?
 
