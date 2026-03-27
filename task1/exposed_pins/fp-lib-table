@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "npm1100lib")(type "KiCad")(uri "${KIPRJMOD}/npm1100lib")(options "")(descr ""))
+)

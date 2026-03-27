@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "NPM1100-QDAA-R7")(type "KiCad")(uri "${KIPRJMOD}/npm1100lib/NPM1100-QDAA-R7.kicad_sym")(options "")(descr ""))
+)
