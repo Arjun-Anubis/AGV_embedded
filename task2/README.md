@@ -89,30 +89,27 @@ $$
 
 ### The algorithm
 
-The basic algorithm is implemented in C in [this file](./numerical_cordic.c), this implements 
+The basic algorithm is implemented in C in [this file](./ncordic.c), this implements 
 8 bit input to 12 bit output CORDIC, which has gainful aaccuracy at
 8 iterations. 
 
 In this case the algorithm is
+```python
+input angle
+constants K8, gamma[0-7]
 
-    input angle
-    constants K8, gamma[0-7]
+output vector
 
-    output vector
+initialise
+vector = k8
+for counter in 0..7:
+    if ( angle > 0 ):
+        angle -= gamma[i]
+        vector = Tp( vector, i )
+    else
+        angle += gamma[i]
+        vector = Tn( vector, i )
 
-    initialise
-    vector = k8
-    for counter in 0..7:
-        if ( angle > 0 ):
-            angle -= gamma[i]
-            vector = Tp( vector, i )
-        else
-            angle += gamma[i]
-            vector = Tn( vector, i )
-
-    return vector
-
-
-where 
-
+return vector
+```
 

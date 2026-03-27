@@ -1,7 +1,7 @@
 # PCB Design with the nPM1100 PMIC
 
 This is documentaion written after the fact, if you want to read the 
-design process as it was done, consider [./README.old.md](the old readme). 
+design process as it was done, consider [the old readme](./README.old.md). 
 I'll explain my model in two layers of abstraction.
 
 1. Behaviour level
